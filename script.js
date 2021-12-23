@@ -8,10 +8,11 @@ b.addEventListener("click",function(e)
 
 function getDetails()
 {
+   
     let un = document.getElementById('usern').value;
     let xhr = new XMLHttpRequest();
-    console.log(un);
-    xhr.open("GET", "https://api.github.com/users/siripujitha01", true);
+    let url="https://api.github.com/users/"+un
+    xhr.open("GET", url , true);
     xhr.send();
     xhr.onload = function(){
         if(xhr.status == 200)
@@ -27,6 +28,14 @@ function getDetails()
                    <td>${data.following}</td>    
           </tr>`
           tb.innerHTML +=row;
+          document.getElementById('a1').style.visibility="hidden";
           }
+   else  if (un === "" || xhr.status != 200)
+      {
+            document.getElementById('a1').style.visibility="visible";
+      }
+   else {
+            document.getElementById('a1').style.visibility="hidden";
+        }
     }
 }
