@@ -4,15 +4,12 @@ body
 }
 
 #usern{
-    margin-top: 50px;
-    margin-left: 410px;
     width : 350px;
     height : 25px;
 }
 
 #btn
 {
-    margin-left: 540px;
     width : 120px;
     border-radius: 10px;
 }
