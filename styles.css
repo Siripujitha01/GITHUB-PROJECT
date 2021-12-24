@@ -4,15 +4,12 @@ body
 }
 
 #usern{
-    margin-top: 100px;
-    margin-left: 410px;
     width : 350px;
     height : 25px;
 }
 
 #btn
 {
-    margin-left: 550px;
     width : 120px;
     border-radius: 10px;
 }
@@ -31,4 +28,8 @@ td{
     padding: 10px;
     text-align: center;
 }
-
+p{
+    color: red;
+    visibility: hidden;
+    
+}
