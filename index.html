@@ -6,21 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src = "script.js" defer></script>
-    <link rel="shortcut icon" type="image/png" href="favicon-32x32.png">
+    <link rel="shortcut icon" type="image/png" href="images/favicon-32x32.png">
     <title>Github Rest Api</title>
 </head>
 <body>
-    <center><h1>GITHUB</h1>
+    <center><img src="https://img.icons8.com/fluency/50/000000/github.png"/><h1>GITHUB</h1>
     <form>
         <input type = "text" placeholder= "Username" id = "usern"> <br>
-        <p id="a1" >PLEASE ENTER A VALID USERNAME</p><br><br>
+        <p id="a1" >PLEASE ENTER A VALID USERNAME</p><br>
         <button id = "btn">Submit</button>
     </form>
     <table border="2px" id ="tab1" >
         
-        <tbody id="td">
+        <tbody id="td1">
 
         </tbody>
-    </table></center>
+    </table>
+    <button id = "repobtn">Show my repos</button>
+    <table border="2px" id ="tab2" >
+        
+        <tbody id="td2">
+            <tr>
+                <td>
+                Repository name </td>
+                <td>Pushed At</td>
+                <td>Updated At</td>
+                </tr>
+
+        </tbody>
+    </table>
+   
+</center>
 </body>
 </html>

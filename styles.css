@@ -21,7 +21,7 @@ body
 }
 table{
     margin: 40px;
-    margin-top: 120px;
+    margin-top: 80px;
     padding: 10px;
 }
 td{
@@ -32,4 +32,18 @@ p{
     color: red;
     visibility: hidden;
     
+}
+#repobtn{
+    margin-top : 10px;
+    border-radius : 15px;
+    width: 150px;
+    height: 25px;
+}
+#repobtn:hover
+{
+  background-color :pink;
+  color : white;
+  font-size: 18px;
+  width : 165px;
+  height : 30px;
 }
