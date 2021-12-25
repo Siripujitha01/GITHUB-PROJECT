@@ -26,9 +26,15 @@ function getDetails()
     xhr.send();
     xhr.onload = function()
     {
+        
+
         if(xhr.status == 200)
         {
           let data=JSON.parse(this.responseText);
+          let update = new Date(data.updated_at);
+        let dt1 = update.getDate()+"-"+(update.getMonth()+1)+"-"+update.getFullYear()
+        let createdate = new Date(data.created_at);
+        let dt2 = createdate.getDate()+"-"+(createdate.getMonth()+1)+"-"+createdate.getFullYear()
           let row=`<tr>
           <td>id</td>
           <td>Username</td>
@@ -41,8 +47,8 @@ function getDetails()
                 <tr>
                 <td>${data.id}</td>
                    <td>${data.login}</td>
-                   <td>${data.updated_at}</td>
-                   <td>${data.created_at}</td>
+                   <td>${dt1}</td>
+                   <td>${dt2}</td>
                    <td>${data.public_repos}</td>
                    <td>${data.followers}</td>
                    <td>${data.following}</td>    
@@ -81,17 +87,26 @@ function getUserRepos()
     {
       if(xhr1.status === 200)
       {
+        
         let reposdata = JSON.parse(this.responseText)
         console.log(reposdata)
         for(item in reposdata)
         {
+          let datecreated = new Date(reposdata[item].created_at);
+          let createddt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear()
+          let datepushed = new Date(reposdata[item].pushed_at);
+          let pusheddt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear()
+          let dateupdated = new Date(reposdata[item].updated_at);
+          let updatedt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear()
           
           let row = `
          
           <tr>
           <td>${reposdata[item].name}</td>
-          <td>${reposdata[item].updated_at}</td>
-          <td>${reposdata[item].pushed_at}</td>
+          <td>${createddt}</td>
+          <td>${pusheddt}</td>
+          <td>${updatedt}</td></tr>
+          
          `
          tb2.innerHTML += row;
          document.getElementById('a1').style.visibility="hidden";

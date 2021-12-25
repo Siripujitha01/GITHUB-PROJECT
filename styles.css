@@ -47,3 +47,8 @@ p{
   width : 165px;
   height : 30px;
 }
+
+.heading{
+    color :red;
+    font-style: oblique;
+}
