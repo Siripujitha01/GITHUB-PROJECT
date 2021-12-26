@@ -120,15 +120,15 @@ function getUserRepos()
           let totaldays = actdt + actmonth*30+ actyear *365;
           let datepushed = new Date(reposdata[item].pushed_at);
           let pusheddt = datepushed.getDate()+"-"+(datepushed.getMonth()+1)+"-"+datepushed.getFullYear()
-          let dateupdated = new Date(reposdata[item].updated_at);
-          let updatedt = dateupdated.getDate()+"-"+(dateupdated.getMonth()+1)+"-"+dateupdated.getFullYear()
+          let dateupdate = new Date(reposdata[item].updated_at);
+          let updated = dateupdate.getDate()+"-"+(dateupdate.getMonth()+1)+"-"+dateupdate.getFullYear()
           
           let row = `
          
           <tr>
           <td>${reposdata[item].name}</td>
           <td>${createddt}</td>
-          <td>${updatedt}</td>
+          <td>${updated}</td>
           <td>${totaldays+"days"}</td>
           </tr>
           
