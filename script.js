@@ -4,6 +4,8 @@ let tb2=document.getElementById('td2');
 document.getElementById('tab1').style.visibility="hidden";
 document.getElementById('tab2').style.visibility="hidden";
 document.getElementById('repobtn').style.visibility="hidden";
+let actdt,actmonth, actyear;
+
 let btn2 = document.getElementById('repobtn');
 
 b.addEventListener("click",function(e)
@@ -58,6 +60,7 @@ function getDetails()
           document.getElementById('tab1').style.visibility="visible";
           document.getElementById('repobtn').style.visibility="visible";
           document.getElementById('tab2').style.visibility="hidden";
+          
          
 
           }
@@ -89,11 +92,32 @@ function getUserRepos()
       {
         
         let reposdata = JSON.parse(this.responseText)
-        console.log(reposdata)
         for(item in reposdata)
         {
           let datecreated = new Date(reposdata[item].created_at);
-          let createddt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear()
+          let createddt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear() 
+          let dateupdated = new Date(reposdata[item].updated_at);
+          let updatedt = dateupdated.getDate()+"-"+(dateupdated .getMonth()+1)+"-"+dateupdated .getFullYear()
+          let creayear = datecreated.getFullYear();
+          let updateyear = dateupdated .getFullYear();
+          let creamonth = datecreated.getMonth()+1;
+          let updatemonth = dateupdated .getMonth()+1;
+          let creadt = datecreated.getDate();
+          let updt = dateupdated.getDate();
+          if(updt < creadt)
+          {
+            updatemonth -= 1;
+            updt += 30;
+          }
+          if(updatemonth < creamonth)
+          {
+            updateyear -= 1;
+            updatemonth += 12;
+          }
+          actdt = updt - creadt;
+          actmonth = updatemonth - creamonth;
+          actyear = updateyear - creayear;
+          let totaldays = actdt + actmonth*30+ actyear *365;
           let datepushed = new Date(reposdata[item].pushed_at);
           let pusheddt = datepushed.getDate()+"-"+(datepushed.getMonth()+1)+"-"+datepushed.getFullYear()
           let dateupdated = new Date(reposdata[item].updated_at);
@@ -104,8 +128,9 @@ function getUserRepos()
           <tr>
           <td>${reposdata[item].name}</td>
           <td>${createddt}</td>
-          <td>${pusheddt}</td>
-          <td>${updatedt}</td></tr>
+          <td>${updatedt}</td>
+          <td>${totaldays+"days"}</td>
+          </tr>
           
          `
          tb2.innerHTML += row;
@@ -113,6 +138,7 @@ function getUserRepos()
          document.getElementById('tab1').style.visibility="visible";
          document.getElementById('tab2').style.visibility="visible";
          document.getElementById('repobtn').style.visibility="visible";
+         
         }
       }
       else
