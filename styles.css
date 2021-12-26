@@ -51,4 +51,21 @@ p{
 .heading{
     color :red;
     font-style: oblique;
+<<<<<<< HEAD
+=======
+}
+
+#contributionbtn{
+    margin-top : 10px;
+    border-radius : 15px;
+    width: 250px;
+    height: 25px;
+}
+#contributionbtn:hover{
+  background-color :pink;
+  color : white;
+  font-size: 18px;
+  width : 300px;
+  height : 30px;
+>>>>>>> 13723f5b94202c2c201fd650d83b785a163e3000
 }
