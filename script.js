@@ -95,8 +95,7 @@ function getUserRepos()
         for(item in reposdata)
         {
           let datecreated = new Date(reposdata[item].created_at);
-          let createddt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear()
-          
+          let createddt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear() 
           let dateupdated = new Date(reposdata[item].updated_at);
           let updatedt = dateupdated.getDate()+"-"+(dateupdated .getMonth()+1)+"-"+dateupdated .getFullYear()
           let creayear = datecreated.getFullYear();
@@ -119,6 +118,10 @@ function getUserRepos()
           actmonth = updatemonth - creamonth;
           actyear = updateyear - creayear;
           let totaldays = actdt + actmonth*30+ actyear *365;
+          let datepushed = new Date(reposdata[item].pushed_at);
+          let pusheddt = datepushed.getDate()+"-"+(datepushed.getMonth()+1)+"-"+datepushed.getFullYear()
+          let dateupdated = new Date(reposdata[item].updated_at);
+          let updatedt = dateupdated.getDate()+"-"+(dateupdated.getMonth()+1)+"-"+dateupdated.getFullYear()
           
           let row = `
          
