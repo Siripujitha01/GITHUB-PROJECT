@@ -94,10 +94,10 @@ function getUserRepos()
         {
           let datecreated = new Date(reposdata[item].created_at);
           let createddt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear()
-          let datecreated = new Date(reposdata[item].pushed_at);
-          let pusheddt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear()
-          let datecreated = new Date(reposdata[item].updated_at);
-          let updatedt = datecreated.getDate()+"-"+(datecreated.getMonth()+1)+"-"+datecreated.getFullYear()
+          let datepushed = new Date(reposdata[item].pushed_at);
+          let pusheddt = datepushed.getDate()+"-"+(datepushed.getMonth()+1)+"-"+datepushed.getFullYear()
+          let dateupdated = new Date(reposdata[item].updated_at);
+          let updatedt = dateupdated.getDate()+"-"+(dateupdated.getMonth()+1)+"-"+dateupdated.getFullYear()
           
           let row = `
          
