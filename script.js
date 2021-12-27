@@ -1,9 +1,13 @@
 let b = document.getElementById('btn');
 let tb=document.getElementById('td1');
 let tb2=document.getElementById('td2');
+let tb3=document.getElementById('td3');
+let a2=document.getElementById('a2');
 document.getElementById('tab1').style.visibility="hidden";
 document.getElementById('tab2').style.visibility="hidden";
+document.getElementById('tab3').style.visibility="hidden";
 document.getElementById('repobtn').style.visibility="hidden";
+document.getElementById('a2').style.visibility="hidden";
 let actdt,actmonth, actyear;
 
 let btn2 = document.getElementById('repobtn');
@@ -60,16 +64,15 @@ function getDetails()
           document.getElementById('tab1').style.visibility="visible";
           document.getElementById('repobtn').style.visibility="visible";
           document.getElementById('tab2').style.visibility="hidden";
-          
-         
+          document.getElementById('tab3').style.visibility="hidden";
 
           }
    else  if (un === "" || xhr.status != 200)
       {
             document.getElementById('a1').style.visibility="visible";
-            document.getElementById('tab1').style.visibility="hidden";
-            document.getElementById('repobtn').style.visibility="hidden";
-            document.getElementById('tab2').style.visibility="hidden";
+           document.getElementById('tab1').style.visibility="hidden";
+           document.getElementById('repobtn').style.visibility="hidden";
+           document.getElementById('tab2').style.visibility="hidden";
       }
    else {
             document.getElementById('a1').style.visibility="hidden";
@@ -122,14 +125,15 @@ function getUserRepos()
           let pusheddt = datepushed.getDate()+"-"+(datepushed.getMonth()+1)+"-"+datepushed.getFullYear()
           let dateupdate = new Date(reposdata[item].updated_at);
           let updated = dateupdate.getDate()+"-"+(dateupdate.getMonth()+1)+"-"+dateupdate.getFullYear()
-          
+          var np=reposdata[item].name;
           let row = `
          
           <tr>
-          <td>${reposdata[item].name}</td>
+          <td><a href="" onclick="repo(this.innerText)">${reposdata[item].name}</a></td>
           <td>${createddt}</td>
           <td>${updated}</td>
-          <td>${totaldays+"days"}</td>
+          <td>${totaldays+"  days"}</td>
+          <td>${reposdata[item].forks}</td>
           </tr>
           
          `
@@ -138,8 +142,7 @@ function getUserRepos()
          document.getElementById('tab1').style.visibility="visible";
          document.getElementById('tab2').style.visibility="visible";
          document.getElementById('repobtn').style.visibility="visible";
-         
-        }
+      }
       }
       else
       {
@@ -148,3 +151,39 @@ function getUserRepos()
     }
 
 }
+function repo(text)
+{
+  addEventListener("click",function(e){
+    e.preventDefault();
+    //console.log(text);
+    if(text != "")
+    {
+      let un = document.getElementById('usern').value;
+      let xhr2 = new XMLHttpRequest();
+      let url= `https://api.github.com/repos/`+un+`/`+text+`/forks`
+      xhr2.open("GET", url , true);
+      xhr2.send();
+      xhr2.onload = function()
+      {
+      let fork=JSON.parse(this.responseText);
+      for (i in fork){
+      let row = `
+         
+          <tr>
+          <td>${fork[i].owner.login}</td>
+          </tr>`
+          tb3.innerHTML += row;
+          document.getElementById('a1').style.visibility="hidden";
+         document.getElementById('tab1').style.visibility="visible";
+         document.getElementById('tab2').style.visibility="visible";
+         document.getElementById('repobtn').style.visibility="visible";
+         document.getElementById('a2').style.visibility="visible";
+          document.getElementById('tab3').style.visibility="visible";
+          
+      }
+      }
+    }
+    text="";
+  })
+}
+
