@@ -1,7 +1,9 @@
+
 let b = document.getElementById('btn');
 let tb=document.getElementById('td1');
 let tb2=document.getElementById('td2');
 let tb3=document.getElementById('td3');
+let tr1=document.getElementById('td4');
 let a2=document.getElementById('a2');
 document.getElementById('tab1').style.visibility="hidden";
 document.getElementById('tab2').style.visibility="hidden";
@@ -41,7 +43,7 @@ function getDetails()
         let dt1 = update.getDate()+"-"+(update.getMonth()+1)+"-"+update.getFullYear()
         let createdate = new Date(data.created_at);
         let dt2 = createdate.getDate()+"-"+(createdate.getMonth()+1)+"-"+createdate.getFullYear()
-          let row=`<tr>
+          let row=`<tr >
           <td>id</td>
           <td>Username</td>
             <td>Updated At</td>
@@ -50,7 +52,7 @@ function getDetails()
             <td>Followers</td>
             <td>Following</td>
                 </tr>
-                <tr>
+                <tr id="tr1">
                 <td>${data.id}</td>
                    <td>${data.login}</td>
                    <td>${dt1}</td>
@@ -65,8 +67,8 @@ function getDetails()
           document.getElementById('repobtn').style.visibility="visible";
           document.getElementById('tab2').style.visibility="hidden";
           document.getElementById('tab3').style.visibility="hidden";
-
           }
+
    else  if (un === "" || xhr.status != 200)
       {
             document.getElementById('a1').style.visibility="visible";
@@ -80,7 +82,7 @@ function getDetails()
             document.getElementById('repobtn').style.visibility="hidden";
             document.getElementById('tab2').style.visibility="hidden";
         }
-    }  
+    } 
 }  
 function getUserRepos()
 {
@@ -125,19 +127,15 @@ function getUserRepos()
           let pusheddt = datepushed.getDate()+"-"+(datepushed.getMonth()+1)+"-"+datepushed.getFullYear()
           let dateupdate = new Date(reposdata[item].updated_at);
           let updated = dateupdate.getDate()+"-"+(dateupdate.getMonth()+1)+"-"+dateupdate.getFullYear()
-          var np=reposdata[item].name;
           let row = `
-         
           <tr>
           <td><a href="" onclick="repo(this.innerText)">${reposdata[item].name}</a></td>
           <td>${createddt}</td>
           <td>${updated}</td>
           <td>${totaldays+"  days"}</td>
-          <td>${reposdata[item].forks}</td>
-          </tr>
-          
+          <td>${reposdata[item].forks}</td></tr>
          `
-         tb2.innerHTML += row;
+         tr1.innerHTML += row;
          document.getElementById('a1').style.visibility="hidden";
          document.getElementById('tab1').style.visibility="visible";
          document.getElementById('tab2').style.visibility="visible";
@@ -149,7 +147,7 @@ function getUserRepos()
          tb2.innerHTML = "Error please reload the page and check the username"
       }
     }
-
+    tr1.innerHTML="";
 }
 function repo(text)
 {
@@ -170,7 +168,7 @@ function repo(text)
       let row = `
          
           <tr>
-          <td>${fork[i].owner.login}</td>
+          <td><a href="" onclick="github(this.innerText)">${fork[i].owner.login}</a></td>
           </tr>`
           tb3.innerHTML += row;
           document.getElementById('a1').style.visibility="hidden";
@@ -182,8 +180,15 @@ function repo(text)
           
       }
       }
+      tb3.innerHTML="";
     }
     text="";
   })
+  tb3.innerHTML="";
 }
+function github(un){
+document.getElementById('usern').value=un;
+getDetails();
+document.getElementById('a2').style.visibility="hidden";
 
+}

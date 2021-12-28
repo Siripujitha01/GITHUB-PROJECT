@@ -52,3 +52,7 @@ p{
     color :red;
     font-style: oblique;
 }
+a{
+    text-decoration: none;
+    color: hotpink;
+}
